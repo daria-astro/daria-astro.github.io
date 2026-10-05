@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Дарья | Астро про тебя — твой сценарий</title>
+<style>
+:root{--bg:#f6f0e8;--card:#fffaf3;--ink:#2b2430;--soft:#6d6270;--accent:#b5586b;--accent2:#7d3f55;--gold:#b98a4e;--line:#e6d9c8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.55;min-height:100vh}
+h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2}
+.wrap{max-width:640px;margin:0 auto;padding:20px 20px 60px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:6px 0 22px;font-size:14px;color:var(--soft)}
+.logo{font-family:Georgia,serif;font-size:19px;color:var(--ink)}
+.logo b{color:var(--accent)}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+h1{font-size:clamp(30px,7vw,44px);margin-bottom:16px}
+h1 em{color:var(--accent);font-style:normal}
+p.lead{font-size:17px;color:var(--soft);margin-bottom:26px}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;border-radius:999px;padding:15px 30px;font-size:17px;cursor:pointer;text-decoration:none;box-shadow:0 8px 22px -10px rgba(181,88,107,.8);transition:.2s}
+.btn:hover{background:var(--accent2)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.note{font-size:13px;color:var(--soft);margin-top:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;margin-bottom:16px}
+.signs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.sign{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 6px;text-align:center;cursor:pointer;font-size:15px;transition:.15s}
+.sign span{display:block;font-size:24px;color:var(--accent)}
+.sign:hover,.sign.on{border-color:var(--accent);background:#fff}
+.bar{height:6px;background:var(--line);border-radius:6px;margin:6px 0 22px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:.35s}
+.q{font-size:13px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:12px;font-size:16px;color:var(--ink);cursor:pointer;line-height:1.45;transition:.15s;font-family:inherit}
+.opt:hover{border-color:var(--accent);transform:translateY(-1px)}
+.back{background:none;border:0;color:var(--soft);margin-top:20px;cursor:pointer;font-size:14px}
+.res h2{font-size:clamp(26px,6vw,36px);margin:6px 0 14px}
+.res h3{font-size:20px;margin:26px 0 8px}
+.res p{margin-bottom:12px;font-size:16.5px}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:4px 14px;font-size:13px}
+.chain{background:#fff;border-left:3px solid var(--accent);padding:14px 18px;border-radius:0 12px 12px 0;margin:14px 0;font-size:16px}
+.offer{background:linear-gradient(160deg,#3a2540,#5a2f48);color:#fbeee6;border-radius:24px;padding:28px 24px;margin-top:30px}
+.offer h3{color:#fff;font-size:24px;margin-bottom:12px}
+.offer ul{list-style:none;margin:14px 0 18px}
+.offer li{padding:6px 0 6px 26px;position:relative}
+.offer li:before{content:"✦";position:absolute;left:0;color:#e8b98a}
+.price{font-family:Georgia,serif;font-size:30px;margin:6px 0 14px}
+.price small{font-size:14px;opacity:.8}
+.offer .btn{background:#e8b98a;color:#2b2430;box-shadow:none}
+.foot{font-size:12px;color:var(--soft);margin-top:36px;text-align:center}
+.foot a{color:var(--soft)}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="logo">Дарья <b>|</b> Астро про тебя</div><div id="stepNote"></div></div>
+
+  <!-- ЭКРАН 1 -->
+  <section id="s-intro">
+    <div class="eyebrow">Личный результат по твоим ответам</div>
+    <h1>Узнай, какой сценарий <em>повторяется у тебя</em> и где он тебя выматывает</h1>
+    <p class="lead">12 коротких вопросов про жизнь, отношения и работу. В конце ты увидишь свой сценарий, как он связан с твоим знаком и что с ним делать.</p>
+    <button class="btn" onclick="go('s-sign')">Пройти тест →</button>
+    <p class="note">12 вопросов · около 3 минут · без регистрации · результат сразу и бесплатно</p>
+  </section>
+
+  <!-- ЭКРАН 2: знак -->
+  <section id="s-sign" class="hide">
+    <div class="eyebrow">Шаг 1</div>
+    <h2 class="serif" style="font-size:30px">Какой у тебя знак зодиака?</h2>
+    <p class="lead" style="margin-top:8px">Он нужен, чтобы подобрать разбор именно для тебя.</p>
+    <div class="signs" id="signs"></div>
+  </section>
+
+  <!-- ЭКРАН 3: вопросы -->
+  <section id="s-quiz" class="hide">
+    <div class="q" id="qnum"></div>
+    <div class="bar"><i id="barfill"></i></div>
+    <h2 class="serif" id="qtext" style="font-size:25px"></h2>
+    <div id="opts"></div>
+    <button class="back" id="backbtn" onclick="back()">← Назад</button>
+    <p class="note">Выбирай то, что бывает у тебя чаще.</p>
+  </section>
+
+  <!-- ЭКРАН 4: результат -->
+  <section id="s-res" class="hide res"></section>
+
+  <div class="foot">Дарья | Астро про тебя · @dar_dari_astro<br>
+  Тест и разборы носят развлекательный и информационный характер и не заменяют консультацию психолога или врача.</div>
+</div>
+
+<script>
+/* ===== НАСТРОЙКИ (заполнить) ===== */
+var CONFIG={
+  PRICE:"990",                 // цена, ₽
+  IG_URL:"https://instagram.com/dar_dari_astro",
+  // ссылки на оплату для каждого сценария (вставить из Lava.top)
+  PAY:{A:"https://app.lava.top/products/a25c1cf8-3886-4638-9eb6-578d2098e75c",B:"https://app.lava.top/products/f5eedd58-9c36-4c6e-b97b-c105fd44d8dd",C:"https://app.lava.top/products/ff4a4d03-320a-4c01-9884-df69bf06856d",D:"https://app.lava.top/products/5439ee7d-957c-4412-b64f-66e0ed0fcec9"},
+  // бесплатная первая страница для каждого сценария
+  FREE:{A:"free/spravlyus_pervaya_stranica.pdf",B:"free/ponyat_pervaya_stranica.pdf",C:"free/shans_pervaya_stranica.pdf",D:"free/risk_pervaya_stranica.pdf"}
+};
+/* ================================== */
+
+var SIGNS=[["♈","Овен"],["♉","Телец"],["♊","Близнецы"],["♋","Рак"],["♌","Лев"],["♍","Дева"],["♎","Весы"],["♏","Скорпион"],["♐","Стрелец"],["♑","Козерог"],["♒","Водолей"],["♓","Рыбы"]];
+var SIGN_LINE={
+ "Овен":"Овен действует быстро, поэтому этот сценарий у тебя чаще включается на бегу, без паузы подумать.",
+ "Телец":"Телец держится за привычное, поэтому ты можешь долго терпеть то, что давно не радует.",
+ "Близнецы":"Близнецы много думают и обсуждают, поэтому ты часто застреваешь в разговорах вместо решения.",
+ "Рак":"Рак чувствует чужое настроение и принимает его на себя, поэтому ты устаёшь раньше, чем замечаешь это.",
+ "Лев":"Льву важно быть нужным и замеченным, поэтому ты можешь тянуть больше, чем реально можешь.",
+ "Дева":"Дева видит все детали и ошибки, поэтому тебе трудно остановиться и сказать «достаточно хорошо».",
+ "Весы":"Весы ищут баланс и не любят ссориться, поэтому ты долго не говоришь вслух о том, что тебя задевает.",
+ "Скорпион":"Скорпион чувствует глубоко, но редко говорит об этом, поэтому ты держишь всё внутри.",
+ "Стрелец":"Стрельцу важна свобода, поэтому ты замечаешь сценарий поздно: сначала уезжаешь, потом думаешь.",
+ "Козерог":"Козерог привык отвечать за всё и всех, поэтому этот сценарий у тебя звучит особенно громко.",
+ "Водолей":"Водолей держит дистанцию, поэтому ты можешь годами не показывать, что тебе нужна поддержка.",
+ "Рыбы":"Рыбы чувствуют чужую боль и забывают про свою, поэтому ты часто спасаешь других за свой счёт."
+};
+var SC={
+ A:{name:"Я справлюсь сама",
+  lead:"Ты тяжело переносишь не сложности, а мысль, что кому-то придётся помогать тебе. Ты привыкла быть той, на кого можно положиться.",
+  when:"Когда в семье, на работе или в паре что-то не так, ты берёшь это на себя. Быстро, молча, без просьб. Потому что так надёжнее и спокойнее.",
+  chain:"тяжело → «сама справлюсь» → молчишь → тащишь больше → устаёшь → никто не знает, что тебе нужна помощь",
+  fix:"Проблема не в силе. Проблема начинается, когда сила становится единственным способом жить, а просить, отдыхать и делегировать уже не получается.",
+  rel:"Ты берёшь на себя общение, быт и решения за двоих. Партнёр привыкает, а ты потом злишься, что он ничего не делает.",
+  work:"Ты забираешь чужие задачи и редко просишь о помощи. Тебя ценят за надёжность, но платят за это ночами и здоровьем.",
+  dec:"Ты принимаешь решения в одиночку и сообщаешь о них, когда всё уже сделано. Поэтому рядом никто не чувствует себя нужным."},
+ B:{name:"Мне нужно всё понять",
+  lead:"Тебя выбивает не плохой ответ, а его отсутствие. Пока не ясно, что происходит, ты не можешь выдохнуть.",
+  when:"Когда человек стал холоднее, на работе молчат, а решение надо принимать без полной информации.",
+  chain:"нет ясности → ищешь объяснение → перебираешь версии → откладываешь решение → ситуация получает власть над тобой",
+  fix:"Проблема не в том, что ты много думаешь. Проблема начинается, когда новых фактов нет, а ты всё равно ищешь ответ.",
+  rel:"Ты можешь слишком долго оставаться рядом с человеком, который держит дистанцию, и искать причину его поведения вместо оценки самого поведения.",
+  work:"Ты тормозишь решение, потому что хочешь сначала узнать все условия. Пока ждёшь полной картины, возможность проходит мимо.",
+  dec:"Ты возвращаешься к одному и тому же выбору в надежде, что придёт информация, которая сразу снимет все сомнения."},
+ C:{name:"Я дам ещё один шанс",
+  lead:"Ты умеешь верить в людей и в лучшее. Но слишком часто даёшь шанс там, где ничего не меняется.",
+  when:"Когда тебе обещают перемены, а они не наступают. Когда помнишь, как было хорошо раньше, и ждёшь, что станет так снова.",
+  chain:"обещали → поверила → ничего не изменилось → «ещё раз подожду» → усталость → снова обещания",
+  fix:"Проблема не в доброте. Проблема начинается, когда ты ждёшь изменений от человека вместо того, чтобы решать, что делаешь ты.",
+  rel:"Ты долго держишься за отношения, которые давно не такие, как раньше, и оправдываешь человека трудным периодом.",
+  work:"Ты соглашаешься на «потом» и «в следующем квартале», хотя условия не выполняются уже давно.",
+  dec:"Ты откладываешь решение, потому что надеешься: вдруг само наладится."},
+ D:{name:"Лучше не рисковать",
+  lead:"Ты ценишь опору, стабильность и предсказуемость. Но порой выбираешь привычное только потому, что страшно потерять то, что есть.",
+  when:"Когда нужны перемены, а ты остаёшься на месте. Когда понимаешь, что пора, но откладываешь на «потом».",
+  chain:"хочу перемен → страшно потерять опору → откладываю → всё остаётся как есть → недовольство растёт",
+  fix:"Проблема не в осторожности. Проблема начинается, когда страх потерять заранее перевешивает всё, что ты можешь получить.",
+  rel:"Ты остаёшься в отношениях, которые уже не радуют, потому что менять всё страшнее, чем терпеть.",
+  work:"Ты держишься за привычную работу и доход, даже когда выросла из неё, и не пробуешь даже маленький безопасный шаг.",
+  dec:"Ты откладываешь важные решения до тех пор, пока ситуация не решит всё за тебя."}
+};
+/* Вопросы: ответы по порядку A,B,C,D (показываются в разном порядке) */
+var Q=[
+ ["Подруга пишет: «Мне плохо». Тебе самой тоже тяжело. Что делаешь?",
+  ["Отвечаю сразу, а про себя молчу. Сама справлюсь.","Пытаюсь понять, что на самом деле случилось, и прокручиваю её слова.","Помогаю, хотя в прошлый раз она брала и не благодарила. Вдруг сейчас будет иначе.","Помогу осторожно, лишь бы не поссориться и не остаться без неё."]],
+ ["Дома накопились дела, а помощи никто не предложил.",
+  ["Сделаю сама, так быстрее и надёжнее.","Думаю: почему они не видят? Это обида или им всё равно?","Напоминаю в сотый раз и верю, что теперь точно подхватят.","Молчу. Не хочу скандала и менять привычный порядок."]],
+ ["На работе предлагают проект с новой ответственностью.",
+  ["Беру. И заранее знаю, что тащить буду почти всё сама.","Сначала хочу узнать все условия и риски. Пока не пойму, не отвечу.","Соглашаюсь на обещание «потом повысим», хотя уже слышала такое.","Отказываюсь или тяну. Привычная работа спокойнее."]],
+ ["Тебе не отвечают на сообщение полдня.",
+  ["Занимаюсь делами. Если что, сама позвоню и всё выясню.","Прокручиваю, что могло случиться, и перечитываю переписку.","Пишу ещё раз. Он всегда так, но потом отходит.","Беспокоюсь, что что-то испортила, и думаю, как не потерять отношения."]],
+ ["Нужны деньги на что-то важное.",
+  ["Накоплю сама и никого не буду просить.","Изучаю десятки вариантов, пока не буду уверена на сто процентов.","Жду, что кто-то обещал помочь, и откладываю решение.","Откладываю. Страшно тратить накопленное."]],
+ ["Родственник просит «ещё раз выручить».",
+  ["Выручаю. Кто, если не я.","Расспрашиваю подробности, пока не пойму всю картину. Потом сомневаюсь.","Соглашаюсь, хотя в прошлый раз обещали вернуть и не вернули.","Соглашаюсь, чтобы не разорвать отношения."]],
+ ["Ты устала и хочешь отпуск.",
+  ["Придумываю, как организовать всё так, чтобы без меня ничего не развалилось. В итоге не еду.","Выбираю место, сравниваю и не могу выбрать.","Говорю себе: вот закончу проект, тогда. Уже который раз.","Остаюсь дома. Тут всё знакомо и безопасно."]],
+ ["В паре давно что-то не так.",
+  ["Сама стараюсь всё улучшить: планирую, договариваюсь за двоих.","Ищу объяснение: что с ним, что со мной, почему так.","Верю, что станет лучше, ведь раньше было хорошо.","Остаюсь. Страшно остаться одной и всё менять."]],
+ ["Близкий человек в трудной ситуации.",
+  ["Беру всё на себя и не показываю, как мне страшно.","Читаю, расспрашиваю, ищу ответы, пока не пойму.","Надеюсь, что само пройдёт, и откладываю разговор.","Боюсь действовать, чтобы не навредить."]],
+ ["Тебе говорят: «Ты же сильная».",
+  ["Улыбаюсь. Да, сильная. Хотя внутри устала.","Задумываюсь: что они имели в виду?","Киваю. Наверное, потерплю ещё немного.","Поддакиваю, чтобы никто не заметил, что мне непросто."]],
+ ["Нужно сказать «нет».",
+  ["Говорю «да» и потом делаю всё сама.","Долго формулирую, как объяснить причину.","Говорю «посмотрим» и надеюсь, что отстанут.","Не говорю. Боюсь испортить отношения."]],
+ ["Что из этого ты узнаёшь больше всего?",
+  ["Я всё держу на себе и никому не говорю, что устала.","Мне нужно всё понять, прежде чем сделать шаг.","Я снова верю, что всё наладится, и даю шанс.","Я выбираю привычное, даже если оно уже не радует."]]
+];
+var KEYS=["A","B","C","D"];
+var sign=null,idx=0,ans=[];
+
+function el(id){return document.getElementById(id)}
+function go(id){["s-intro","s-sign","s-quiz","s-res"].forEach(function(s){el(s).classList.add("hide")});el(id).classList.remove("hide");window.scrollTo(0,0)}
+(function(){var h="";SIGNS.forEach(function(s){h+='<div class="sign" onclick="pick(\''+s[1]+'\')"><span>'+s[0]+'</span>'+s[1]+'</div>'});el("signs").innerHTML=h})();
+function pick(n){sign=n;idx=0;ans=[];show();go("s-quiz")}
+function show(){
+  var q=Q[idx];el("qnum").textContent="Вопрос "+(idx+1)+" из "+Q.length;
+  el("barfill").style.width=((idx)/Q.length*100)+"%";
+  el("qtext").textContent=q[0];
+  var order=[0,1,2,3].map(function(i){return (i+idx)%4});
+  var h="";order.forEach(function(i){h+='<button class="opt" onclick="choose('+i+')">'+q[1][i]+'</button>'});
+  el("opts").innerHTML=h;
+}
+function choose(i){ans[idx]=KEYS[i];idx++;if(idx>=Q.length){el("barfill").style.width="100%";result()}else show()}
+function back(){if(idx>0){idx--;ans.length=idx;show()}else go("s-sign")}
+function result(){
+  var c={A:0,B:0,C:0,D:0};ans.forEach(function(k){c[k]++});
+  var k="A",m=-1;["A","B","C","D"].forEach(function(x){if(c[x]>m){m=c[x];k=x}});
+  var s=SC[k];
+  var h='<div class="badge">Твой знак: '+sign+'</div>'+
+  '<div class="eyebrow" style="margin-top:18px">Твой результат</div>'+
+  '<h2>Твой сценарий: «'+s.name+'»</h2><p>'+s.lead+'</p>'+
+  '<div class="card"><p><b>Как это связано со знаком.</b> '+SIGN_LINE[sign]+'</p></div>'+
+  '<h3>Когда это включается</h3><p>'+s.when+'</p>'+
+  '<h3>Как это работает</h3><div class="chain">'+s.chain+'</div><p>'+s.fix+'</p>'+
+  '<h3>Как это влияет на жизнь</h3>'+
+  '<p><b>В отношениях.</b> '+s.rel+'</p><p><b>В работе и деньгах.</b> '+s.work+'</p><p><b>В важных решениях.</b> '+s.dec+'</p>'+
+  '<p>Знать об этом мало. Важно заметить момент, когда сценарий включается, и знать, что делать вместо привычной реакции.</p>';
+  h+='<div class="card" style="margin-top:22px"><h3 style="font-size:20px">Первая страница разбора, бесплатно</h3><p>Страница из методички для сценария «'+s.name+'». Можно сохранить и перечитать.</p><a class="btn" href="'+CONFIG.FREE[k]+'" download>Скачать первую страницу</a></div>';
+  h+='<div class="offer"><h3>Полный разбор: «'+s.name+'»</h3><p>PDF на 14 страниц. После оплаты он придёт на e-mail и откроется по ссылке. Не ещё одно описание тебя, а план, как заметить сценарий раньше.</p><ul><li>Откуда этот сценарий и как он проявляется в паре, на работе и в семье</li><li>Первые сигналы и что ты делаешь в этот момент</li><li>Новые реакции и фразы, которые можно сказать вслух</li><li>Практика на 5 минут, план на 7 дней и страница про твой знак</li></ul><div class="price">'+CONFIG.PRICE+' ₽ <small>один раз · PDF остаётся у тебя</small></div><a class="btn" href="'+CONFIG.PAY[k]+'" target="_blank" rel="noopener">Получить разбор</a></div>';
+  h+='<p style="margin-top:20px"><button class="btn ghost" onclick="go(\'s-intro\')">Пройти тест заново</button></p>';
+  el("s-res").innerHTML=h;go("s-res");
+}
+</script>
+</body>
+</html>
